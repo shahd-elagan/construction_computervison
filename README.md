@@ -47,14 +47,14 @@ A sequence-based deep learning model trained to classify machinery actions:
 
 Custom logic to determine:
 
-* **Active حالت تشغيل**
-* **Idle حالة خمول**
+* **Active**
+* **Idle**
 
 ---
 
 ## 📂 Project Structure & File Descriptions
 
-### 1. `roboflow.py`
+### 1. `besttrained.py`
 
 * Used for training the YOLOv5 model
 * Dataset sourced from Roboflow
