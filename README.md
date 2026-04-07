@@ -1,31 +1,161 @@
-# construction_computervison
-AI-Powered Industrial Machine Utilization &amp; Activity Monitoring Dashboard A real-time computer vision system using YOLOv5 and LSTM to track machinery, analyze operational status (Active/Idle), and predict activities (Digging, Loading, etc.). Features a Streamlit dashboard, PostgreSQL integration for logging, and automated JSON session exports.
-
-# explnantion of  files in the project :
-
-1-roboflow file >> this code was used to train the yolov5 model on the construction data set found in roboflow , the data has 3 classes ( 0 > closed white cars , 1 > deep truch , 2 > the extractavor ) 
 
 
+# 🚧 AI-Powered Industrial Machine Utilization & Activity Monitoring Dashboard
 
-2- testing1 > this code was used to test the accuracy of the pretrained model on the items in videos not images 
+A real-time computer vision system designed to monitor construction machinery, analyze operational efficiency, and classify activities using deep learning.
 
+This project integrates **YOLOv5**, **LSTM**, and a **Streamlit dashboard** to provide actionable insights into machine usage (Active vs Idle) and task-level activities (e.g., Digging, Loading).
 
-3- testing2 > this code was used to detect whether the objects are static or moving so it was detection for idle and active mode 
+---
 
+## 📌 Key Features
 
-4-savingposes> the poses ( diging , loading , dumping , swinging ) need to be collected manually  so i used a youtube videos to cut every 30 second frames into a clip to classify each the training was saved in a .pth file 
+* 🎯 **Object Detection** using YOLOv5
+* 🔄 **Activity Recognition** using LSTM (sequence-based prediction)
+* ⚙️ **Operational Status Detection** (Active vs Idle)
+* 📊 **Interactive Dashboard** built with Streamlit
+* 🗄️ **PostgreSQL Integration** for structured logging
+* 📁 **Automated JSON Export** for session data
+* 🎥 **Video Processing Support** (not limited to images)
 
+---
 
-5-database > the code for creation a table in postgress 
+## 🧠 Model Overview
 
+### 1. Object Detection (YOLOv5)
 
-6-app.py > this was the final code containg the yolo pretrained file , the pth file for poses and the streamlit as well as part responisble for generating a json file 
+Trained on a custom dataset from Roboflow with the following classes:
 
+* **0** → Closed White Cars
+* **1** → Dump Truck
+* **2** → Excavator
 
+---
 
+### 2. Activity Recognition (LSTM)
 
-# interface options 
+A sequence-based deep learning model trained to classify machinery actions:
 
-the interface containt a button for uploading video , stopping the run , saving to json and it shows a total of idle and active seconds 
+* Digging
+* Loading
+* Dumping
+* Swinging
+
+---
+
+### 3. Motion Detection
+
+Custom logic to determine:
+
+* **Active حالت تشغيل**
+* **Idle حالة خمول**
+
+---
+
+## 📂 Project Structure & File Descriptions
+
+### 1. `roboflow.py`
+
+* Used for training the YOLOv5 model
+* Dataset sourced from Roboflow
+* Handles data preprocessing and training pipeline
+
+---
+
+### 2. `testing1.py`
+
+* Evaluates the pretrained YOLOv5 model
+* Runs detection on **videos instead of images**
+* Used to validate real-world performance
+
+---
+
+### 3. `testing2.py`
+
+* Detects whether objects are:
+
+  * **Static (Idle)**
+  * **Moving (Active)**
+* Based on motion tracking logic
+
+---
+
+### 4. `savingposes.py`
+
+* Responsible for dataset creation for LSTM
+* Extracts frames from YouTube videos (every 30 seconds)
+* Manually labels activities:
+
+  * Digging
+  * Loading
+  * Dumping
+  * Swinging
+* Trains and saves the model as `.pth` file
+
+---
+
+### 5. `database.py`
+
+* Creates and manages PostgreSQL tables
+* Stores:
+
+  * Machine activity logs
+  * Status (Idle/Active)
+  * Timestamps
+
+---
+
+### 6. `app.py`
+
+* Main application file
+* Integrates:
+
+  * YOLOv5 model
+  * LSTM activity model (`.pth`)
+  * Streamlit dashboard
+* Handles:
+
+  * Real-time video processing
+  * Database logging
+  * JSON session export
+
+---
+
+## 🖥️ User Interface
+
+The Streamlit dashboard provides:
+
+* 📤 **Upload Video Button**
+* ⏹️ **Stop Processing Button**
+* 💾 **Save Session as JSON**
+* ⏱️ **Live Tracking of:**
+
+  * Total Active Time
+  * Total Idle Time
+
+---
+
+## 🔄 Workflow
+
+1. Upload a video through the interface
+2. YOLOv5 detects machinery in each frame
+3. Motion analysis determines Active/Idle state
+4. LSTM model predicts activity type
+5. Results are:
+
+   * Displayed in real-time
+   * Stored in PostgreSQL
+   * Exported as JSON
+
+---
+
+## 🛠️ Technologies Used
+
+* Python
+* YOLOv5
+* PyTorch
+* OpenCV
+* Streamlit
+* PostgreSQL
 
 
